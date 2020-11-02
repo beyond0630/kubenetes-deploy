@@ -26,7 +26,26 @@
 ### 7) 执行 `kubectl apply -f kube-metrics.yml` 安装 metrics-server --Master 
 ### 8) 执行 `kubectl apply -f kube-ingress.yml` 安装 ingress --Master
 
-## 4. kubectl 命令自动补全
+## 4. 集群验证
+
+* kubectl get node
+
+```shell 
+NAME         STATUS   ROLES    AGE     VERSION
+k8s-master   Ready    master   2d22h   v1.19.3
+k8s-node1    Ready    <none>   2d22h   v1.19.3
+k8s-node2    Ready    <none>   2d22h   v1.19.3
+```
+
+* kubectl top node
+```shell
+NAME         CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+k8s-master   94m          4%     1611Mi          41%       
+k8s-node1    35m          1%     851Mi           22%       
+k8s-node2    33m          1%     713Mi           18%  
+```
+
+## 5. kubectl 命令自动补全
 
 ```shell
 yum install -y epel-release bash-completion
