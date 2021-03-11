@@ -14,11 +14,10 @@ function install() {
     for node_ip in ${NODE_IPS[@]}; do
         echo ">>> ${node_ip}"
         ssh root@${node_ip} "yum install -y yum-utils device-mapper-persistent-data lvm2"
-        ssh root@${node_ip} "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
         ssh root@${node_ip} "sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo"
         ssh root@${node_ip} "yum install  -y docker-ce docker-ce-cli containerd.io"
         ssh root@${node_ip} "mkdir -p /etc/docker"
-        scp daemon.json root@${node_ip}:/etc/docker
+        scp daemon.json root@${node_ip}:/etc/docker/
         ssh root@${node_ip} "systemctl daemon-reload && systemctl enable docker && systemctl restart docker "
     done
 }
