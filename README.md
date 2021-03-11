@@ -15,16 +15,17 @@
 
 * -- 后面表示在哪个节点执行
  
-### 1) 执行 `prepare.sh` 系统初始化 -- Master
-### 2) 执行 `kubeadmin_kubelet_kubectl` 安装 Kubeadmin Kubelet Kubectl -- Master
-### 3) 执行 `docker.sh` 安装 Docker -- Master
-### 4) 执行 `master.sh` 初始化 Master 节点 -- Master
-### 4) 执行 `kubectl apply -f kube-flannel.yml` 安装 flanner -- Master
-### 6) kubeadm join `192.168.110.177`:6443 --token ejvsr4.ymm499ugpgeusxrc     --discovery-token-ca-cert-hash sha256:83e902ce4904156e195c1237b59a8c13853ea5ea0bdeb7cea90ea978d75ecbc0 -- Node
+### 执行 `prepare.sh` 系统初始化 -- Master
+### 执行 `kubeadmin_kubelet_kubectl` 安装 Kubeadmin Kubelet Kubectl -- Master
+### 执行 `docker.sh` 安装 Docker -- Master
+### 执行 `master.sh` 初始化 Master 节点 -- Master
+### 执行 `k8s-conf.sh` 配置 k8s 集群 -- Master
+### 执行 `kubectl apply -f kube-flannel.yml` 安装 flanner -- Master
+### kubeadm join `192.168.110.177`:6443 --token ejvsr4.ymm499ugpgeusxrc     --discovery-token-ca-cert-hash sha256:83e902ce4904156e195c1237b59a8c13853ea5ea0bdeb7cea90ea978d75ecbc0 -- Node
 * 参数说明
     - 192.168.110.177 Master Ip
-### 7) 执行 `kubectl apply -f kube-metrics.yml` 安装 metrics-server --Master 
-### 8) 执行 `kubectl apply -f kube-ingress.yml` 安装 ingress --Master
+### 执行 `kubectl apply -f kube-metrics.yml` 安装 metrics-server --Master 
+### 执行 `kubectl apply -f kube-ingress.yml` 安装 ingress --Master
 
 ## 4. 集群验证
 
