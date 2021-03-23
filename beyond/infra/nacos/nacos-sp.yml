@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos-np
+  namespace: beyond
+  labels:
+    app: nacos-np
+spec:
+  type: NodePort
+  ports:
+    - port: 8848
+      nodePort: 30088
+      name: server
+      targetPort: 8848
+    - port: 7848
+      nodePort: 30078
+      name: rpc
+      targetPort: 7848
+  selector:
+    app: nacos

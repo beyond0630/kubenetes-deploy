@@ -14,7 +14,7 @@
 ## 3. 开始部署 
 
 * -- 后面表示在哪个节点执行
- 
+ s
 ### 执行 `prepare.sh` 系统初始化 -- Master
 ### 执行 `kubeadmin_kubelet_kubectl` 安装 Kubeadmin Kubelet Kubectl -- Master
 ### 执行 `docker.sh` 安装 Docker -- Master

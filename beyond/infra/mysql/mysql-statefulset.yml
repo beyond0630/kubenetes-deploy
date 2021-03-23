@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: beyond
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy: IfNotPresent
+          args: []
+          ports:
+            - containerPort: 3306
+            - containerPort: 33060
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000M"
+            #limits:
+            #  cpu: "500m"
+            #  memory: "1000M"
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 120
+            periodSeconds: 60
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: beyond
+          volumeMounts:
+            - name: timezone
+              mountPath: /etc/timezone
+              subPath: timezone
+              readOnly: true
+            - name: zoneinfo
+              mountPath: /etc/localtime
+              readOnly: true
+            - name: mysql-conf
+              subPath: mysqld.cnf
+              mountPath: /etc/mysql/conf.d/mysqld.cnf
+              readOnly: true
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: timezone
+          configMap:
+            name: timezone
+        - name: zoneinfo
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+        - name: mysql-conf
+          configMap:
+            name: mysql-conf
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: pvc-beyond-mysql

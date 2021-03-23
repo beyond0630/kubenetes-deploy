@@ -31,4 +31,4 @@ function check() {
 
 create_json
 install
-check
+check 

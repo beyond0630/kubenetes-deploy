@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-beyond-mysql
+  namespace: beyond
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-beyond
+  resources:
+    requests:
+      storage: 10G
