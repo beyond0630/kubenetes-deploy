@@ -29,8 +29,8 @@ function run() {
         -p 53:53/udp \
         -v /etc/timezone:/etc/timezone:ro \
         -v /etc/localtime:/etc/localtime:ro \
-        -v /data/deploy/coredns/hosts:/etc/hosts:ro \
-        -v /data/deploy/coredns/Corefile:/Corefile:ro \
+        -v /data/coredns/hosts:/etc/hosts:ro \
+        -v /data/coredns/Corefile:/Corefile:ro \
         coredns/coredns
 }
 

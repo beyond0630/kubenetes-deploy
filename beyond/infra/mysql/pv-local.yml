@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-beyond
   local:
-    path: /data/local-pv/beyond/mysql
+    path: /data/k8s/local-pv/beyond/mysql
   nodeAffinity:
     required:
       nodeSelectorTerms:

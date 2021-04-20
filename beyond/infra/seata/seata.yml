@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seata-server
+  namespace: beyond
+  labels:
+    k8s-app: seata-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      k8s-app: seata-server
+  template:
+    metadata:
+      labels:
+        k8s-app: seata-server
+    spec:
+      containers:
+        - name: seata-server
+          image: docker.io/seataio/seata-server:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SEATA_CONFIG_NAME
+              value: file:/root/seata-config/registry
+          ports:
+            - name: http
+              containerPort: 8091
+              protocol: TCP
+          volumeMounts:
+            - name: seata-config
+              mountPath: /root/seata-config
+      volumes:
+        - name: seata-config
+          configMap:
+            name: seata-server-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seata-server
+  namespace: beyond
+  labels:
+    k8s-app: seata-server
+spec:
+  type: NodePort
+  ports:
+    - port: 8091
+      nodePort: 30091
+      protocol: TCP
+      name: http
+  selector:
+    k8s-app: seata-server
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seata-server-config
+  namespace: beyond
+data:
+  registry.conf: |
+    registry {
+        type = "nacos"
+        nacos {
+          application = "seata-server"
+          serverAddr = "nacos-headless.beyond.svc.cluster.local"
+        }
+    }
+    config {
+      type = "nacos"
+      nacos {
+        serverAddr = "nacos-headless.beyond.svc.cluster.local"
+        group = "SEATA_GROUP"
+      }
+    }

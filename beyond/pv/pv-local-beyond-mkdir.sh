@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir -p /data/local-pv/beyond/redis
-mkdir -p /data/local-pv/beyond/mysql
-mkdir -p /data/local-pv/beyond/zookeeper
-mkdir -p /data/local-pv/beyond/zookeeper-datalog
-mkdir -p /data/local-pv/beyond/rabbitmq
+mkdir -p /data/k8s/local-pv/beyond/redis
+mkdir -p /data/k8s/local-pv/beyond/mysql
+mkdir -p /data/k8s/local-pv/beyond/zookeeper
+mkdir -p /data/k8s/local-pv/beyond/zookeeper-datalog
+mkdir -p /data/k8s/local-pv/beyond/rabbitmq
