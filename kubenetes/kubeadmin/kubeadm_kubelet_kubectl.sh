@@ -19,7 +19,7 @@ EOF"
 function install_kubeadm_kubelet_kubectl() {
     for node_ip in ${NODE_IPS[@]}; do
         echo ">>> ${node_ip}"
-        ssh root@${node_ip} "yum install -y yum install -y kubelet-${VERSION} kubeadm-${VERSION} kubectl-${VERSION}"
+        ssh root@${node_ip} "yum install -y yum install -y kubelet-${K8S_VERSION} kubeadm-${K8S_VERSION} kubectl-${K8S_VERSION}"
         ssh root@${node_ip} "systemctl enable kubelet"
     done
 }
