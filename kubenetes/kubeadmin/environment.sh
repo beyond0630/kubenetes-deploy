@@ -13,4 +13,4 @@ export NODE_NUM=4
 export NODE_IPS=(192.168.154.128 192.168.154.129 192.168.154.130)
 
 # 集群各 IP 对应的主机名数组
-export NODE_NAMES=(k8s-master k8s-node1 k8s-node2 k8s-node3)
+export NODE_NAMES=(k8s-master k8s-worker1 k8s-worker2)
