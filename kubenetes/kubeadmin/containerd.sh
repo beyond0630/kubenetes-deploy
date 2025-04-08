@@ -43,7 +43,7 @@ function install() {
         echo ">>> ${node_ip}"
         ssh root@${node_ip} "yum install -y yum-utils device-mapper-persistent-data lvm2 wget curl"
         ssh root@${node_ip} "sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo"
-        ssh root@${node_ip} "yum install -y containerd.io-${CONTAINERD_VERSION} containerd.io"
+        ssh root@${node_ip} "yum install -y containerd.io-${CONTAINERD_VERSION}"
         ssh root@${node_ip} "mkdir -p /etc/containerd"
         scp config.toml root@${node_ip}:/etc/containerd/
         ssh root@${node_ip} "systemctl daemon-reexec && systemctl daemon-reload && systemctl enable containerd --now "
