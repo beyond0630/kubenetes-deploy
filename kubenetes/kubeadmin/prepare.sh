@@ -59,6 +59,9 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF"
         ssh root@${node_ip} "sysctl --system"
+        ssh root@${node_ip} "echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables"
+        ssh root@${node_ip} "echo 'net.bridge.bridge-nf-call-iptables = 1' >> /etc/sysctl.conf"
+        ssh root@${node_ip} "sysctl -p"
     done
 }
 
